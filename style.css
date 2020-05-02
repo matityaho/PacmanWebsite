@@ -1,0 +1,144 @@
+body {
+    background-color: #000000;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+
+input{
+    color: #000000;
+    font-family: 'Press Start 2P', cursive;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    color: #000000;
+    /*background-color: rgba(255, 255, 255, 0.932);*/
+    background-image: url("seamless-background-pac-man-chalk-pattern-white.jpg");
+}
+h1 {
+    text-shadow: 2px 2px rgba(158, 158, 158, 0.562);
+}
+
+menu {
+    overflow: hidden;
+    background-color: #333;
+    margin: 0px;
+}
+
+menu a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+menu a:hover {
+    background-color: #ddd;
+    color: black;
+}
+/*menu {
+    overflow: hidden;
+    background-color: rgba(44, 34, 54, 0.5);
+    margin: 0px;
+}
+
+menu a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 20px;
+}
+
+menu a:hover {
+    background-color: rgba(255, 252, 74, 0.575);
+    color: black;
+}*/
+
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.column.side.left {
+    width: 20%;
+}
+.column.side.right {
+    width: 30%;
+}
+
+.column.middle {
+    width: 50%;			
+}
+
+canvas{
+    border: whitesmoke;
+    border-style:ridge;
+    border-radius: 5px;
+}
+
+
+footer {
+    padding: 15px;
+    text-align: center;
+    margin-top: 600px;
+
+}
+button,.submit{
+    background-color: #fde457;
+    color: #000000;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 17px;
+}	
+
+#newGameB{
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+}
+
+
+div.fixed {
+    position: absolute;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: table;
+
+}
+
+#Setups{
+    display: inline-block;
+    width:300px;
+}
+    #registration label{
+    display: inline-block;
+    width: 100px;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+    margin-left: 5px;
+}
+
+label.error {
+    display: inline;
+}
+label{
+    font-size: 16px;
+}
+
+#dt {
+    text-indent: -500px;
+    height: 25px;
+    width: 200px;
+  }
