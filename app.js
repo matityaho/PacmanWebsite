@@ -9,10 +9,10 @@ var endTime;
 var interval;
 var interval2;
 var intervalSpecial;
-var right= 39;
-var left =37;
-var down= 40;
-var up=38;
+var right= 39,rightkeyValue= 39;
+var left =37,leftkeyValue= 37;
+var down= 40,downkeyValue= 40;
+var up=38,upkeyValue= 38;
 var food_Amount = 50;
 var color5points="black";
 var color15points="black";
@@ -34,12 +34,24 @@ var monster3;
 var monster4;
 var special;
 var lives=5;
+var audio;
 
 
-/*$(document).ready(function() {
-	context = canvas.getContext("2d");
-	Start();
-});*/
+$(document).ready(function() {
+	audio = document.getElementById("gameAudio"); 
+ 
+
+});
+
+function playAudio() { 
+	audio.currentTime = 0;
+	audio.play(); 
+} 
+
+function stopAudio() { 
+	audio.pause(); 
+}
+
 
 function Start() {
 	context = canvas.getContext("2d");
@@ -148,6 +160,14 @@ function Start() {
 			}
 		}
 	}
+	if(pacman_remain || shape.i == undefined || shape.j == undefined){
+		var emptyCell = findEmptyCell(board);
+		shape.i = emptyCell[0];
+		shape.j = emptyCell[1];
+		pacman_remain--;
+		board[emptyCell[0]][emptyCell[1]] = 2;
+	}
+	
 
 
 	
@@ -202,11 +222,18 @@ function Start() {
 	board[emptyCell[0]][emptyCell[1]]=6;
 
 	//special points
-	var emptyCell = findRandomEmptyCell(board);
-	board[emptyCell[0]][emptyCell[1]]=1;
-	special.preVal=0;
-	special.i=emptyCell[0];
-	special.j=emptyCell[1];
+	if(monstersAmount==4){
+		var emptyCell = findRandomEmptyCell(board);
+		board[emptyCell[0]][emptyCell[1]]=1;
+		special.preVal=0;
+		special.i=emptyCell[0];
+		special.j=emptyCell[1];
+	}else{
+		board[9][0]=1;
+		special.preVal=0;
+		special.i=9;
+		special.j=0;
+	}
 
 	keysDown = {};
 	addEventListener(
@@ -227,9 +254,10 @@ function Start() {
 		false
 	);
 	Draw(-1);
-	interval = setInterval(UpdatePosition, 250);
-	interval2 = setInterval(UpdatePositionMonster, 3000);
-	intervalSpecial = setInterval(UpdatePositionSpecial, 1000);
+	interval = setInterval(UpdatePosition, 110);
+	interval2 = setInterval(UpdatePositionMonster, 800);
+	intervalSpecial = setInterval(UpdatePositionSpecial, 900);
+	playAudio();
 	
 	
 }
@@ -443,24 +471,6 @@ function drawMonster(center,context, mColor){
 }
 
 function drawSpecial(center){//(30,30)
-	/*context.beginPath();
-	context.moveTo(center.x+12, center.y-7);
-	context.lineTo(center.x, center.y+14);
-	context.lineTo(center.x-12, center.y-7);
-	context.lineTo(center.x+12, center.y-7);
-	context.fillStyle = "#30cfb4"; //color
-	context.lineJoin = "round";
-	context.fill();
-	
-	context.beginPath();
-	context.moveTo(center.x+12,  center.y+7);
-	context.lineTo(center.x-12,  center.y+7);
-	context.lineTo(center.x,  center.y-14);
-	context.lineTo(center.x+12,  center.y+7);
-	context.fillStyle = "#30cfb4"; //color
-	context.lineJoin = "round";
-	context.fill();*/
-
 	context.beginPath();
 	context.arc(center.x+5, center.y, 12, 0, 2 * Math.PI); 
 	context.fillStyle = "red";
@@ -585,8 +595,8 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	time_elapsed=endTime-time_elapsed;
-	if(time_elapsed <= 0){
+	time_elapsed=Math.round(endTime-time_elapsed);
+	if(time_elapsed < 0){
 		updateLives();
 		endGame();
 		if(score<100)
@@ -610,6 +620,7 @@ function endGame(){
 	window.clearInterval(interval);
 	window.clearInterval(interval2);
 	window.clearInterval(intervalSpecial);
+	stopAudio();
 }
 
 
@@ -917,14 +928,11 @@ function continueGame(){
 		monster4.value=-1;
 	}
 
+
 	Draw(-1);
 }
 
 //setups
-var upkeyValue;
-var DownkeyValue;
-var RightkeyValue;
-var LeftkeyValue;
 $(document).ready(function() {
 
 	//sliders
@@ -943,54 +951,12 @@ $(document).ready(function() {
 	rangeslidermonsters.oninput = function() { 
 	outputmonsters.innerHTML = this.value; 
 	}
-
-	var UpKeyEl = document.getElementById('UpKey');
-	UpKeyEl.addEventListener('keydown', (e) => {
-		if (!e.repeat){
-			$("#UpKeyerror").remove();
-			upkeyValue=e.keyCode;
-			upKey=e.key;
-			  $('#UpKey').after('<span id="UpKeyerror" class="text">Key '+upKey+' pressed</span>');
-		}
-
-	  });
-	var DownKeyEl = document.getElementById('DownKey');
-	DownKeyEl.addEventListener('keydown', (e) => {
-	if (!e.repeat){
-		$("#DownKeyerror").remove();
-		DownkeyValue=e.keyCode;
-		downKey=e.key;
-		$('#DownKey').after('<span id="DownKeyerror" class="text">Key '+downKey+' pressed</span>');
-	}
-
-	  });
-	  var RightKeyEl = document.getElementById('RightKey');
-	  RightKeyEl.addEventListener('keydown', (e) => {
-		if (!e.repeat){
-			$("#RightKeyerror").remove();
-			RightkeyValue=e.keyCode;
-			rightKey=e.key;
-			  $('#RightKey').after('<span id="RightKeyerror" class="text">Key '+rightKey+' pressed</span>');
-		}
-
-	  });
-	  var LeftKeyEl = document.getElementById('LeftKey');
-	  LeftKeyEl.addEventListener('keydown', (e) => {
-		if (!e.repeat){
-			$("#LeftKeyerror").remove();
-			LeftkeyValue=e.keyCode;
-			leftKey=e.key;
-			  $('#LeftKey').after('<span id="LeftKeyerror" class="text">Key '+leftKey+' pressed</span>');
-		}
-
-	  });
 	
 	});
 
 	//setups
 	function buttonSetGame(){
-		//$('#Setups').submit(function(e) {
-			//e.preventDefault();
+
 			var canSaveSetup=true;
 			var balls = $('#balls').val();
 			var Time = $('#Time').val();
@@ -1011,22 +977,6 @@ $(document).ready(function() {
 				$('#Time').after('<span class="error">This field is required</span>');
 				canSaveSetup=false;
 			}
-			/*if ($('#UpKey').val().length < 1) {
-				$('#UpKey').after('<span class="error">This field is required</span>');
-				canSaveSetup=false;
-			}
-			if ($('#DownKey').val().length < 1) {
-				$('#DownKey').after('<span class="error">This field is required</span>');
-				canSaveSetup=false;
-			}
-			if ($('#RightKey').val().length < 1) {
-				$('#RightKey').after('<span class="error">This field is required</span>');
-				canSaveSetup=false;
-			}
-			if ($('#LeftKey').val().length < 1) {
-				$('#LeftKey').after('<span class="error">This field is required</span>');
-				canSaveSetup=false;
-			}*/
 			if (monsters.length < 1) {
 				$('#monsters').after('<span class="error">This field is required</span>');
 				canSaveSetup=false;
@@ -1088,13 +1038,31 @@ $(document).ready(function() {
 
 	  function showSetups(){
 		  var demoKeyUp=document.getElementById('KeyUpDemoSet');
-		  demoKeyUp.innerHTML=upKey;
+		  if(up == 32){
+			demoKeyUp.innerHTML='space';
+		  }
+		  else{
+		  	demoKeyUp.innerHTML=upKey;
+		  }
 		  var demoKeyDown=document.getElementById('KeyDownDemoSet');
-		  demoKeyDown.innerHTML=downKey;
+		  if(down == 32){
+			demoKeyDown.innerHTML='space';
+		  }else{
+		  	demoKeyDown.innerHTML=downKey;
+		  }
 		  var demoKeyRight=document.getElementById('KeyRightDemoSet');
-		  demoKeyRight.innerHTML=rightKey;
+		  if(right == 32){
+			demoKeyRight.innerHTML='space';
+		  }
+		  else{
+		  	demoKeyRight.innerHTML=rightKey;
+		  }
 		  var demoKeyLeft=document.getElementById('KeyLeftDemoSet');
-		  demoKeyLeft.innerHTML=leftKey;
+		  if(left == 32){
+			demoKeyLeft.innerHTML='space';
+		  }else{
+		  	demoKeyLeft.innerHTML=leftKey;
+		  }
 		  var demofood=document.getElementById('foodDemoSet');
 		  demofood.innerHTML=food_Amount;
 		  var demo5points=document.getElementById('5pointsDemoSet');

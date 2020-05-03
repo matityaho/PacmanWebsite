@@ -9,16 +9,14 @@
 		<!-- packman  -->
 		<script type="text/javascript" src="./app.js"></script>
 		
-		<!-- form,login -->
+		<!-- form -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		
-
-			  
-
-		<!-- modal dialog (about) -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
+		<!-- jQuery Modal -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!--style-->
 		<link rel="stylesheet"  href="style.css" />
@@ -27,7 +25,7 @@
 
 	<body onload="PageLoaded()">
 		<header>
-			<img src="pacman-logo-png-2.png" width="470" height="100">
+			<img src="photos/pacman-logo-png-2.png" width="470" height="100">
 			<h3>By Hay Matityaho and May Vaitz</h3>
 		</header>
 		<menu >
@@ -35,87 +33,97 @@
 			<a onclick="ShowSection('welcome')" href="#">Welcome</a>
 			<a onclick="ShowSection('Registration')" href="#">Registration</a>
 			<a onclick="ShowSection('login')" href="#">Login</a>
-			<a data-target="#myModal" data-toggle="modal" class="MainNavText" id="MainNavHelp" href="#myModal">About</a>
+			<a rel="modal:open" id="MainNavHelp" href="#myModal">About</a>
 			</h4>
 		</menu>
 		<div id="welcome" class="fixed">
-			<br>
-			<img src="pac-man-logo.png" width="110" height="120"><h1>Welcome!</h1>
-			<button id="reg" onclick="ShowSection('Registration')">Registration</button>&nbsp&nbsp
-			<button id="loginButton" onclick="ShowSection('login')">Log-In</button>
+			<br><br><br>
+			<img src="photos/pac-man-logo.png" width="110" height="120"><h1>Welcome!</h1>
+			Want to play??
+			<br><br>
+			<button class="welcome" id="reg" onclick="ShowSection('Registration')">Registration</button>&nbsp&nbsp
+			<button class="welcome" id="loginButton" onclick="ShowSection('login')">Log-In</button>
+			<br><br>
+			
 		</div>
 		
 		<div id="Registration" class="fixed">
+			<br><br>
 			<h1>Registration:</h1>
+			Please enter your details here..
+			<br><br>
 			<form id="registration" method="post" action="">
 			  <div>
 				<label for="username">User-Name:</label>
-				<input type="text" id="username" name="username"></input>
-			  </div>
+				<input type="text" id="username" name="username" placeholder="charecters only"></input>
+			  </div><br>
 			  <div>
 				<label for="password">Password:</label>
-				<input type="password" id="password" name="password"></input>
-			  </div>
+				<input type="password" id="password" name="password" placeholder="char and digits- at least 6"></input>
+			  </div><br>
 			  <div>
 				<label for="fullname">Full Name:</label>
-				<input type="text" name="fullname" id="fullname"/>
+				<input type="text" name="fullname" id="fullname" placeholder="charecters only"/>
 			  </div>
-			  <div>
+			  <div><br>
 				<label for="email">Email:</label>
-				<input type="text" id="email" name="email"></input>
+				<input type="text" id="email" name="email" placeholder="email address"></input>
 			  </div>
-			  <div>
+			  <div><br>
 				<label for="date" >Birthday:</label>
 				<input type="date" id="dt" onchange="mydate1();" />
 				<input type="text" id="ndt"  onclick="mydate();" hidden/>
-	
-
-			  </div>			  
-			  
+			  </div><br>			  
 			</form>
 			<div>
 				<input onclick="subClick()" type="submit" value="Submit" class="submit"/>&nbsp
 				<button onclick="clearReg()">Clear</button>
 			  </div>
-			
 		</div>
 
 
 
 		<div id="login" class="fixed">
+			<br><br>
 			<h1>Log-in</h1>
+			Enter your username and password..
+			<br><br>
 			<div>
 				<label for="username">User-Name:</label>
 				<input type="text" id="userName" name="username"></input>
-			</div>
+			</div><br>
 			<div>
 				<label for="password">Password:&nbsp&nbsp</label>
 				<input type="password" id="Password" name="password"></input>
-			</div>
+			</div><br>
 			<button onclick="checkDetails()" >Login</button>&nbsp&nbsp
 			<button onclick="document.getElementById('Password').value = '';document.getElementById('userName').value = ''">Clear</button>
+
+			<br><br><br>
+			Lets play!!
 		</div>
 
 		<div id="setups" class="fixed">
 			<h2>Setup:</h2>
-			<h4>Set movment keys:</h4>
+			<button onclick="randomSetups()">Random setup</button>
+			<h3>Or personal setup:</h3>
 			<div>
-			<button id="buttomUp" onclick="upButtom()">Up</button>
+			<h4>Set movment keys:</h4>
+			<button class="keys" id="buttomUp" onclick="upButtom()">Up</button>
 			<br>
-			<button id="buttomDown" onclick="downButtom()">Down</button>
+			<button class="keys" id="buttomDown" onclick="downButtom()">Down</button>
 			<br>
-			<button id="buttomRight" onclick="rightButtom()">Right</button>
+			<button class="keys" id="buttomRight" onclick="rightButtom()">Right</button>
 			<br>
-			<button id="buttomLeft" onclick="leftButtom()">Left</button>
+			<button class="keys" id="buttomLeft" onclick="leftButtom()">Left</button>
 			</div>
 			<form id="Setups" method="post" action="">
 			  <div>
-				<label for="balls">Number of balls:</label>   <span id="ballsDemo"></span>
+				<label for="balls">Number of candys:</label>   <span id="ballsDemo"></span>
 				<input type="range" min="50" max="90" value="50" class="slider" id="balls" name="balls" placeholder="50-90"></input>
 			  </div>
 			  <div>
 				  <!-- colors -->
-				  <h4>Set colors:</h4>
 				<label for="balls5Color">color of balls with  5 point: </label> 
 				<input id="ball5p" name="balls with 5 point" type="color" value="#5b5364">
 				<br>
@@ -126,19 +134,17 @@
 				<input id="ball25p" name="balls with 25 point" type="color" value="#d19f41" >
 			  </div>
 			  <div>
-				<label for="Time">Time to play:</label>
-				<input type="number" min="60" id="Time" name="Time" placeholder="minimum 60 seconds"></input>				
+				<label for="Time">Time to play: (seconds)</label>
+				<input type="number" min="60" id="Time" name="Time" placeholder="minimum 60 seconds" ></input>				
 			  </div>
 			  <div>
 				<label for="monsters">Amount of monsters:</label>  <span id="monstersDemo"></span>
 				<input type="range" min="1" max="4" value="3" class="slider" id="monsters" name="monsters" placeholder="1-4"></input>
-			  </div>		  
-			  
+			  </div>		  	  
 			</form>
-			<div>		
-				
+			<div>			
 				<button onclick="buttonSetGame()">Set</button>
-				<button onclick="randomSetups()">Random</button>
+				
 			  </div>
 		</div>
 
@@ -150,7 +156,6 @@
 					<span id="userNamePlayer" ></span>
 					</h3>
 				</div>
-				<br>
 				<div id="score">
 					<label for="lblScore">SCORE:</label>
 					<input id="lblScore" type="text" size="10"/>
@@ -159,35 +164,26 @@
 					<label for="lblTime">TIME:&nbsp</label>
 					<input id="lblTime" type="text" size="10"/>
 				</div>
-				<br>
 				<div id="hearts">
-					<img id="heart1" src="video-game-heart-png-1.png" width="30" height="30"><img id="heart2" src="video-game-heart-png-1.png" width="30" height="30"><img id="heart3" src="video-game-heart-png-1.png" width="30" height="30"><img id="heart4" src="video-game-heart-png-1.png" width="30" height="30"><img id="heart5" src="video-game-heart-png-1.png" width="30" height="30">
-				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+					<label for="lblLive">LIVES:</label>
+					<img id="heart1" src="photos/video-game-heart-png-1.png" width="30" height="30"><img id="heart2" src="photos/video-game-heart-png-1.png" width="30" height="30"><img id="heart3" src="photos/video-game-heart-png-1.png" width="30" height="30"><img id="heart4" src="photos/video-game-heart-png-1.png" width="30" height="30"><img id="heart5" src="photos/video-game-heart-png-1.png" width="30" height="30">
+				</div>				
 				<div id="newGame">
 					<button id="newGameB" onclick="newGameSameSetups()">New Game</button>
 				</div >
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<p><img id="apple" src="‏‏apple.PNG" width="48" height="45">- Increase 50 points</p>
-				<p><img id="time" src="‏‏‏‏time.PNG" width="44" height="46">- Increase 20 seconds</p>
+				<h5>
+				<p><img id="greenmon" src="photos/‏‏greenmon.PNG" width="55" height="59"> (-1) heart and (-10) points</p>
+				<p><img id="pinkmon" src="photos/‏‏pinkmon.PNG" width="57" height="60"> (-1) heart, (-10) points, (-10) seconds</p>
+				<p><img id="orangemon" src="photos/orangemon.PNG" width="55" height="59"> (-1) heart and (-20) points </p>
+				<p><img id="‏‏bluemon" src="photos/bluemon.PNG" width="55" height="59"> (-2) heart and (-10) points</p>
+				</h5>
+				<button id="Stopaudio" onclick="stopAudio()">Stop audio</button>
 			</div>
 			<div id="game" class="column middle">
 				<canvas id="canvas" height="600" width="600"></canvas>
 			</div>
-			
 			<div class="column side right">
-			<aside> 
-				<h1>Game setups:</h1> 
+				<h1>Game setup:</h1> 
 				<p>Key up: <span id="KeyUpDemoSet"></span></p>
 				<p>Key down: <span id="KeyDownDemoSet"></span></p>
 				<p>Key right: <span id="KeyRightDemoSet"></span></p>
@@ -198,38 +194,33 @@
 				<p id="25pointsDemoSet">Color of 25 points food</p> 
 				<p>Total time to play: <span id="TimeDemoSet"></span></p>
 				<p>Amount of monsters: <span id="MonsterDemoSet"></span></p>
-				<p><img id="greenmon" src="‏‏greenmon.PNG" width="55" height="59">- Decrease 1 heart and 10 points</p>
-				<p><img id="pinkmon" src="‏‏pinkmon.PNG" width="57" height="56">- Decrease 1 heart, 10 points and 10 seconds</p>
-				<p><img id="orangemon" src="orangemon.PNG" width="55" height="59">- Decrease 1 heart and 20 points </p>
-				<p><img id="‏‏bluemon" src="bluemon.PNG" width="55" height="59">- Decrease 2 heart and 10 points</p>
-			</aside>
+				<p><img id="apple" src="photos/apple.PNG" width="50" height="43"> (+50) points</p>
+				<p><img id="time" src="photos/‏‏‏‏timephoto.PNG" width="44" height="46"> (+20) seconds</p>
 			</div>
 		</div>
-		
-		<div class="modal" id="myModal" role="dialog">
-			<div class="modal-dialog">
-			  <div class="modal-content">
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal">&times;</button>
-				  <h4 class="modal-title">About</h4>
-				</div>
-				<div class="modal-body">
-				  <p>Some text in the modal.</p>
-				</div>
-				<div class="modal-footer">
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			  </div>
-			  
-			</div>
-		  </div>
 
+		<audio id="gameAudio">
+			<source src="SuperMarioBros.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+
+		<!--myModal-->
+		<div id="myModal" class="modal">
+				<div>
+				<h3>About:</h3>
+				Hay Matityaho & May Vaitz <br>
+				JQuery Plugins use: REGEX and modal windows.<br>
+				The struggles we have during this assinment: <br>
+				- Long distance working.<br>
+				- Understanding a given code.<br>
+				- Canvas drawing.<br>
+			</div>
+		</div>
 		<footer>
-			
 			<h5>
 				contect mail: vaitz@post.bgu.ac.il, haymatit@post.bgu.ac.il
 			</h5>
-			<img src="bar_pacline.gif" width="500" height="32">
+			<img src="photos/bar_pacline.gif" width="500" height="32">
 		</footer>
 	</body>
 </html>
