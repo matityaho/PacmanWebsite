@@ -1,8 +1,10 @@
 # Assignment2
  
 Website:
-312411499 מאי וייץ 
-204158531 חי מתתיהו
-הפונקציונאליות שהוספנו:
-1. סוגים שונים של מפלצות (צבעים, צורות וכו') לדוגמא, מפלצת "חזקה" אחת שמורידה 2 פסילות ו- 20 נק'.
-2. הוספת שעון שמגדיל את זמן המשחק.
+
+May Vaitz, ID: 312411499
+Hay Matityaho, ID: 204158531
+
+Added functionalities:
+1. Diffrent types of ghosts with diffrent capabilities and color.
+2. Clock- when pacman eats the clock it gets you extra 20 seconds in time.
