@@ -1,10 +1,12 @@
 # Assignment2
-![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
+
 
 
 May Vaitz, ID: 312411499
 
 Hay Matityaho, ID: 204158531
+
+![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
 
 ### Added functionalities:
 * Diffrent types of ghosts with diffrent capabilities and color.
