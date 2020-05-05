@@ -12,5 +12,5 @@ Hay Matityaho, ID: 204158531
 
 *We recommend to play with a screen resolution of 1366X768.
 
-### Play in our website: https://vaitz.github.io/pacman/
+### Play PACMAN in our website: https://vaitz.github.io/pacman/
  
