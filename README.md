@@ -1,5 +1,5 @@
 # Assignment2
-
+![](https://github.com/vaitz/pacman/blob/master/photos/pac-man-logo.png)
 Website:
 
 
