@@ -262,8 +262,8 @@ function Start() {
 		false
 	);
 	Draw(-1);
-	interval = setInterval(UpdatePosition, 100);
-	interval2 = setInterval(UpdatePositionMonster, 400);
+	interval = setInterval(UpdatePosition, 130);
+	interval2 = setInterval(UpdatePositionMonster, 480);
 	intervalSpecial = setInterval(UpdatePositionSpecial, 600);
 	playAudio();
 	
@@ -441,13 +441,33 @@ function UpdatePositionMonster() {
 	else if(monster1.i>shape.i && board[monster1.i-1][monster1.j ] != 1 && board[monster1.i-1][monster1.j ] != 4 && board[monster1.i-1][monster1.j ] != monster2.value && board[monster1.i-1][monster1.j ] != monster3.value && board[monster1.i-1][monster1.j ] != monster4.value){//monster under the pacman
 		monster1.i--;
 	}
-	else{//COL
-		if(monster1.j<shape.j && board[monster1.i][monster1.j + 1] != 1 && board[monster1.i][monster1.j + 1] != 4 && board[monster1.i][monster1.j + 1] != monster2.value && board[monster1.i][monster1.j + 1] != monster3.value && board[monster1.i][monster1.j + 1] != monster4.value){//monster is on the pacmans left
+	else if(monster1.j<shape.j && board[monster1.i][monster1.j + 1] != 1 && board[monster1.i][monster1.j + 1] != 4 && board[monster1.i][monster1.j + 1] != monster2.value && board[monster1.i][monster1.j + 1] != monster3.value && board[monster1.i][monster1.j + 1] != monster4.value){//monster is on the pacmans left
 			monster1.j++;
+	}
+	else if(monster1.j>shape.j && board[monster1.i][monster1.j - 1] != 1 && board[monster1.i][monster1.j - 1] != 4 && board[monster1.i][monster1.j - 1] != monster2.value && board[monster1.i][monster1.j - 1] != monster3.value && board[monster1.i][monster1.j - 1] != monster4.value){//monster is on the pacmans right
+		monster1.j--;
+	}
+	else{
+		done=false;
+		while(!done){
+		rand = Math.round((Math.random()*3)+1);
+		if(rand == 1 && inbound(monster1.i+1,monster1.j) && board[monster1.i+1][monster1.j] != 1 && board[monster1.i+1][monster1.j] != 4 && board[monster1.i+1][monster1.j ] != monster2.value && board[monster1.i+1][monster1.j ] != monster3.value && board[monster1.i+1][monster1.j ] != monster4.value){
+			monster1.i++;
+			done=true;
 		}
-		else if(monster1.j>shape.j && board[monster1.i][monster1.j - 1] != 1 && board[monster1.i][monster1.j - 1] != 4 && board[monster1.i][monster1.j - 1] != monster2.value && board[monster1.i][monster1.j - 1] != monster3.value && board[monster1.i][monster1.j - 1] != monster4.value){//monster is on the pacmans right
+		else if(rand == 2 && inbound(monster1.i-1,monster1.j) && board[monster1.i-1][monster1.j] != 1 &&  board[monster1.i-1][monster1.j ] != 4 && board[monster1.i-1][monster1.j ] != monster2.value && board[monster1.i-1][monster1.j ] != monster3.value && board[monster1.i-1][monster1.j ] != monster4.value){
+			monster1.i--;
+			done=true;
+		}
+		else if(rand == 3 && inbound(monster1.i,monster1.j+1) && board[monster1.i][monster1.j + 1] != 1 && board[monster1.i][monster1.j + 1] != 4 && board[monster1.i][monster1.j + 1] != monster2.value && board[monster1.i][monster1.j + 1] != monster3.value && board[monster1.i][monster1.j + 1] != monster4.value){
+			monster1.j++;
+			done=true;
+		}
+		else if(rand == 4 && inbound(monster1.i,monster1.j-1) && board[monster1.i][monster1.j - 1] != 1 && board[monster1.i][monster1.j - 1] != 4 && board[monster1.i][monster1.j - 1] != monster2.value && board[monster1.i][monster1.j - 1] != monster3.value && board[monster1.i][monster1.j - 1] != monster4.value){
 			monster1.j--;
+			done=true;
 		}
+	}
 	}
 	if((shape.i == monster1.i)&&(shape.j == monster1.j)){
 		monster1.preValMon1=0;
@@ -475,14 +495,32 @@ function UpdatePositionMonster() {
 		else if(monster2.j>shape.j && board[monster2.i][monster2.j - 1] != 1 && board[monster2.i][monster2.j - 1] != 4 && board[monster2.i][monster2.j - 1] !=monster1.value && board[monster2.i][monster2.j - 1] !=monster3.value && board[monster2.i][monster2.j - 1] !=monster4.value){//monster is on the pacmans right
 			monster2.j--;
 		}
-		else{
-			//ROW
-			if(monster2.i<shape.i && board[monster2.i+1][monster2.j ] != 1 && board[monster2.i+1][monster2.j ] != 4 && board[monster2.i+1][monster2.j ] != monster1.value && board[monster2.i+1][monster2.j ] != monster3.value && board[monster2.i+1][monster2.j ] != monster4.value){//monster above the pacman
+		else if(monster2.i<shape.i && board[monster2.i+1][monster2.j ] != 1 && board[monster2.i+1][monster2.j ] != 4 && board[monster2.i+1][monster2.j ] != monster1.value && board[monster2.i+1][monster2.j ] != monster3.value && board[monster2.i+1][monster2.j ] != monster4.value){//monster above the pacman
+			monster2.i++;
+		}
+		else if(monster2.i>shape.i && board[monster2.i-1][monster2.j ] != 1 && board[monster2.i-1][monster2.j ] != 4 && board[monster2.i-1][monster2.j ] !=monster1.value && board[monster2.i-1][monster2.j ] !=monster3.value && board[monster2.i-1][monster2.j ] !=monster4.value){//monster under the pacman
+			monster2.i--;
+		} else {
+			done=false;
+			while(!done){
+			rand = Math.round((Math.random()*3)+1);
+			if(rand == 1 && inbound(monster2.i+1,monster2.j) && board[monster2.i+1][monster2.j ] != 1 && board[monster2.i+1][monster2.j ] != 4 && board[monster2.i+1][monster2.j ] != monster1.value && board[monster2.i+1][monster2.j ] != monster3.value && board[monster2.i+1][monster2.j ] != monster4.value){
 				monster2.i++;
+				done=true;
 			}
-			else if(monster2.i>shape.i && board[monster2.i-1][monster2.j ] != 1 && board[monster2.i-1][monster2.j ] != 4 && board[monster2.i-1][monster2.j ] !=monster1.value && board[monster2.i-1][monster2.j ] !=monster3.value && board[monster2.i-1][monster2.j ] !=monster4.value){//monster under the pacman
+			else if(rand == 2 && inbound(monster2.i-1,monster2.j) && board[monster2.i-1][monster2.j ] != 1 && board[monster2.i-1][monster2.j ] != 4 && board[monster2.i-1][monster2.j ] !=monster1.value && board[monster2.i-1][monster2.j ] !=monster3.value && board[monster2.i-1][monster2.j ] !=monster4.value){
 				monster2.i--;
+				done=true;
 			}
+			else if(rand == 3 && inbound(monster2.i,monster2.j+1) && board[monster2.i][monster2.j + 1] != 1 && board[monster2.i][monster2.j + 1] != 4 && board[monster2.i][monster2.j + 1] !=monster1.value && board[monster2.i][monster2.j + 1] !=monster3.value && board[monster2.i][monster2.j + 1] !=monster4.value){
+				monster2.j++;
+				done=true;
+			}
+			else if(rand == 4 && inbound(monster2.i,monster2.j-1) && board[monster2.i][monster2.j - 1] != 1 && board[monster2.i][monster2.j - 1] != 4 && board[monster2.i][monster2.j - 1] !=monster1.value && board[monster2.i][monster2.j - 1] !=monster3.value && board[monster2.i][monster2.j - 1] !=monster4.value){
+				monster2.j--;
+				done=true;
+			}
+		}
 		}
 		if((shape.i == monster2.i)&&(shape.j == monster2.j)){
 			monster2.preValMon2=0;
@@ -511,13 +549,32 @@ function UpdatePositionMonster() {
 		else if(monster3.i>shape.i && board[monster3.i-1][monster3.j ] != 1  && board[monster3.i-1][monster3.j ] != 4 && board[monster3.i-1][monster3.j ] !=monster1.value && board[monster3.i-1][monster3.j ] !=monster2.value && board[monster3.i-1][monster3.j ] !=monster4.value){//monster under the pacman
 			monster3.i--;
 		}
-		else{//COL
-			if(monster3.j<shape.j && board[monster3.i][monster3.j + 1] != 1 && board[monster3.i][monster3.j + 1] != 4 && board[monster3.i][monster3.j + 1] !=monster1.value && board[monster3.i][monster3.j + 1] !=monster2.value && board[monster3.i][monster3.j + 1] !=monster4.value){//monster is on the pacmans left
+		else if(monster3.j<shape.j && board[monster3.i][monster3.j + 1] != 1 && board[monster3.i][monster3.j + 1] != 4 && board[monster3.i][monster3.j + 1] !=monster1.value && board[monster3.i][monster3.j + 1] !=monster2.value && board[monster3.i][monster3.j + 1] !=monster4.value){//monster is on the pacmans left
+			monster3.j++;
+		}
+		else if(monster3.j>shape.j&& board[monster3.i][monster3.j - 1] != 1&& board[monster3.i][monster3.j - 1] != 4 && board[monster3.i][monster3.j - 1] !=monster1.value && board[monster3.i][monster3.j - 1] !=monster2.value && board[monster3.i][monster3.j - 1] !=monster4.value){//monster is on the pacmans right
+			monster3.j--;
+		} else {
+			done=false;
+			while(!done){
+			rand = Math.round((Math.random()*3)+1);
+			if(rand == 1 && inbound(monster3.i+1,monster3.j) && board[monster3.i+1][monster3.j ] != 1 && board[monster3.i+1][monster3.j ] != 4  && board[monster3.i+1][monster3.j ] !=monster1.value&& board[monster3.i+1][monster3.j ] !=monster2.value && board[monster3.i+1][monster3.j ] !=monster4.value){
+				monster3.i++;
+				done=true;
+			}
+			else if(rand == 2 && inbound(monster3.i-1,monster3.j) && board[monster3.i-1][monster3.j ] != 1  && board[monster3.i-1][monster3.j ] != 4 && board[monster3.i-1][monster3.j ] !=monster1.value && board[monster3.i-1][monster3.j ] !=monster2.value && board[monster3.i-1][monster3.j ] !=monster4.value){
+				monster3.i--;
+				done=true;
+			}
+			else if(rand == 3 && inbound(monster3.i,monster3.j+1) && board[monster3.i][monster3.j + 1] != 1 && board[monster3.i][monster3.j + 1] != 4 && board[monster3.i][monster3.j + 1] !=monster1.value && board[monster3.i][monster3.j + 1] !=monster2.value && board[monster3.i][monster3.j + 1] !=monster4.value){
 				monster3.j++;
+				done=true;
 			}
-			else if(monster3.j>shape.j&& board[monster3.i][monster3.j - 1] != 1&& board[monster3.i][monster3.j - 1] != 4 && board[monster3.i][monster3.j - 1] !=monster1.value && board[monster3.i][monster3.j - 1] !=monster2.value && board[monster3.i][monster3.j - 1] !=monster4.value){//monster is on the pacmans right
+			else if(rand == 4 && inbound(monster3.i,monster3.j-1) && board[monster3.i][monster3.j - 1] != 1&& board[monster3.i][monster3.j - 1] != 4 && board[monster3.i][monster3.j - 1] !=monster1.value && board[monster3.i][monster3.j - 1] !=monster2.value && board[monster3.i][monster3.j - 1] !=monster4.value){
 				monster3.j--;
+				done=true;
 			}
+		}
 		}
 		if((shape.i == monster3.i)&&(shape.j == monster3.j)){
 			monster3.preValMon3=0;
@@ -539,19 +596,38 @@ function UpdatePositionMonster() {
 	if(monster4.alive==1){
 		board[monster4.i][monster4.j]=monster4.preValMon4;
 		//COL
-		if(monster4.j<shape.j && board[monster4.i][monster4.j + 1] != 1&& board[monster4.i][monster4.j + 1] != 4 && board[monster4.i][monster4.j + 1] !=monster1.value  && board[monster4.i][monster4.j + 1] !=monster2.value  && board[monster4.i][monster4.j + 1] !=monster3.value ){//monster is on the pacmans left
+		if(monster4.j<shape.j && board[monster4.i][monster4.j + 1] != 1 && board[monster4.i][monster4.j + 1] != 4 && board[monster4.i][monster4.j + 1] !=monster1.value  && board[monster4.i][monster4.j + 1] !=monster2.value  && board[monster4.i][monster4.j + 1] !=monster3.value ){//monster is on the pacmans left
 			monster4.j++;
 		}
 		else if(monster4.j>shape.j && board[monster4.i][monster4.j - 1] != 1 && board[monster4.i][monster4.j - 1] != 4 && board[monster4.i][monster4.j - 1] !=monster1.value && board[monster4.i][monster4.j - 1] !=monster2.value && board[monster4.i][monster4.j - 1] !=monster3.value){//monster is on the pacmans right
 			monster4.j--;
 		}
-		else{//ROW
-			if(monster4.i<shape.i && board[monster4.i+1][monster4.j ] != 1  && board[monster4.i+1][monster4.j ] != 4 && board[monster4.i+1][monster4.j ] != monster1.value && board[monster4.i+1][monster4.j ] != monster2.value && board[monster4.i+1][monster4.j ] != monster3.value){//monster above the pacman
+		else if(monster4.i<shape.i && board[monster4.i+1][monster4.j ] != 1  && board[monster4.i+1][monster4.j ] != 4 && board[monster4.i+1][monster4.j ] != monster1.value && board[monster4.i+1][monster4.j ] != monster2.value && board[monster4.i+1][monster4.j ] != monster3.value){//monster above the pacman
+			monster4.i++;
+		}
+		else if(monster4.i>shape.i&& board[monster4.i-1][monster4.j] != 1&& board[monster4.i-1][monster4.j ] != 4 && board[monster4.i-1][monster4.j ] != monster1.value && board[monster4.i-1][monster4.j ] != monster2.value && board[monster4.i-1][monster4.j ] != monster3.value){//monster under the pacman
+			monster4.i--;
+		} else {
+			done=false;
+			while(!done){
+			rand = Math.round((Math.random()*3)+1);
+			if(rand == 1 && inbound(monster4.i+1,monster4.j) && board[monster4.i+1][monster4.j ] != 1  && board[monster4.i+1][monster4.j ] != 4 && board[monster4.i+1][monster4.j ] != monster1.value && board[monster4.i+1][monster4.j ] != monster2.value && board[monster4.i+1][monster4.j ] != monster3.value){
 				monster4.i++;
+				done=true;
 			}
-			else if(monster4.i>shape.i&& board[monster4.i-1][monster4.j ] != 1&& board[monster4.i-1][monster4.j ] != 4 && board[monster4.i-1][monster4.j ] != monster1.value && board[monster4.i-1][monster4.j ] != monster2.value && board[monster4.i-1][monster4.j ] != monster3.value){//monster under the pacman
+			else if(rand == 2 && inbound(monster4.i-1,monster4.j) && board[monster4.i-1][monster4.j ] != 1&& board[monster4.i-1][monster4.j ] != 4 && board[monster4.i-1][monster4.j ] != monster1.value && board[monster4.i-1][monster4.j ] != monster2.value && board[monster4.i-1][monster4.j ] != monster3.value){
 				monster4.i--;
+				done=true;
 			}
+			else if(rand == 3 && inbound(monster4.i,monster4.j+1) && board[monster4.i][monster4.j + 1] != 1&& board[monster4.i][monster4.j + 1] != 4 && board[monster4.i][monster4.j + 1] !=monster1.value  && board[monster4.i][monster4.j + 1] !=monster2.value  && board[monster4.i][monster4.j + 1] !=monster3.value){
+				monster4.j++;
+				done=true;
+			}
+			else if(rand == 4 && inbound(monster4.i,monster4.j-1) && board[monster4.i][monster4.j - 1] != 1 && board[monster4.i][monster4.j - 1] != 4 && board[monster4.i][monster4.j - 1] !=monster1.value && board[monster4.i][monster4.j - 1] !=monster2.value && board[monster4.i][monster4.j - 1] !=monster3.value){
+				monster4.j--;
+				done=true;
+			}
+		}
 		}
 		if((shape.i == monster4.i)&&(shape.j == monster4.j)){
 			monster4.preValMon4=0;
@@ -570,6 +646,12 @@ function UpdatePositionMonster() {
 		}
 		board[monster4.i][monster4.j]=monster4.value;
 	}
+}
+
+function inbound(i,j){
+	if(i>=0 && i<boardYlen && j>=0 && j<boardXlen)
+		return true;
+	return false;
 }
 
 function UpdatePositionSpecial() {
