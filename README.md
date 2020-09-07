@@ -2,7 +2,6 @@
 
 Web development enviourmnets course
 
-May Vaitz
 
 ![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
 
