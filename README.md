@@ -2,14 +2,15 @@
 
 Web development enviourmnets course
 
+![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
+
+
 To enter the game the user needs to log in, so sign up in the registration page first.
 
 After the user sign in he needs to choose the game preferences.
 
 This game graphics is performed by Canvas tag in HTML.
 
-
-![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
 
 ### Added functionalities:
 * Diffrent types of ghosts with diffrent capabilities and color.
