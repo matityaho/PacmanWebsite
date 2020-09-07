@@ -1,4 +1,4 @@
-# Assignment 2 - Pacman
+# Assignment No.2 - Pacman
 
 Web development enviourmnets course
 
