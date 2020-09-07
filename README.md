@@ -1,10 +1,8 @@
-# Assignment2
+# Assignment 2
 
+Web development enviourmnets course
 
-
-May Vaitz, ID: 312411499
-
-Hay Matityaho, ID: 204158531
+May Vaitz
 
 ![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
 
