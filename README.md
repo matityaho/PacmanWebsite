@@ -1,6 +1,12 @@
-# Assignment 2
+# Assignment 2 - Pacman
 
 Web development enviourmnets course
+
+To enter the game the user needs to log in, so sign up in the registration page first.
+
+After the user sign in he needs to choose the game preferences.
+
+This game graphics is performed by Canvas tag in HTML.
 
 
 ![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
