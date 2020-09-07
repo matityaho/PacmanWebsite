@@ -18,5 +18,5 @@ This game graphics is performed by Canvas tag in HTML.
 
 *We recommend to play with a screen resolution of 1366X768.
 
-### Play PACMAN on our website: https://vaitz.github.io/Pacman/
+### Play PACMAN on our website: https://vaitz.github.io/PacmanWebsite/
  
