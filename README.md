@@ -13,11 +13,6 @@ After the user logged in he needs to choose the game settings.
 
 This game graphics was made using Canvas tag in HTML.
 
-
-### Added functionalities:
-* Diffrent types of ghosts with diffrent capabilities and color.
-* Clock- when pacman eats the clock it gets you extra 20 seconds in time.
-
 *Recommend to play with a screen resolution of 1366X768.
 
 ### Play PACMAN on the website: https://vaitz.github.io/PacmanWebsite/
