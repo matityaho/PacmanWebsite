@@ -7,11 +7,11 @@ Using JavaScript, HTML and CSS.
 ![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
 
 
-To enter the game the user needs to log in, so sign up in the registration page first.
+To enter the game the user have to sign up and then log in.
 
-After the user sign in he needs to choose the game preferences.
+After the user logged in he needs to choose the game settings.
 
-This game graphics is performed by Canvas tag in HTML.
+This game graphics was made using Canvas tag in HTML.
 
 
 ### Added functionalities:
