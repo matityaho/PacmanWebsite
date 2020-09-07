@@ -2,6 +2,8 @@
 
 Web development enviourmnets course
 
+Using JavaScript, HTML and CSS.
+
 ![](https://github.com/vaitz/pacman/blob/master/photos/bar_pacline.gif)
 
 
